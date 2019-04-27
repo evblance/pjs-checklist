@@ -1,6 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Caveat|Permanent+Marker);
+
+:root {
+  --background-colour: rgb(47, 86, 112);
+  --text-colour: hsl(0, 0%, 20%);
+  --notes-font: normal normal normal 1rem "Caveat", serif;
+  --title-font: normal small-caps normal 2rem "Permanent Marker", serif;
+  --paper-colour: hsl(63, 47%, 93%);
+  --paper-radius: 2px;
+  --paper-width: 400px;
+}
+
 body {
-  background: rgb(47, 86, 112);
-  color: #333;
+  background: var(--background-colour);
+  color: var(--text-colour);
+  font: var(--notes-font);
   margin: 0;
   padding: 0;
 }
@@ -10,4 +23,15 @@ body {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.checklist {
+  background: var(--paper-colour);
+  border-radius: var(--paper-radius);
+  width: var(--paper-width);
+}
+
+.checklist__title {
+  font: var(--title-font);
+  text-align: center;
 }
