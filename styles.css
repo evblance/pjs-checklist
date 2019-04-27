@@ -1,6 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Caveat|Permanent+Marker);
+
+:root {
+  --background-colour: rgb(47, 86, 112);
+  --item-base-height: 1.3rem;
+  --text-colour: hsl(0, 0%, 20%);
+  --notes-font: normal normal normal 1.3rem/var(--item-base-height) "Caveat", serif;
+  --title-font: normal small-caps normal 2rem "Permanent Marker", serif;
+  --paper-colour: hsl(63, 47%, 93%);
+  --paper-radius: 2px;
+  --paper-width: 400px;
+  --vertical-rule-ink-colour: hsl(0, 75%, 70%);
+  --horizontal-rule-ink-colour: hsl(229, 50%, 70%);
+}
+
 body {
-  background: rgb(47, 86, 112);
-  color: #333;
+  background: var(--background-colour);
+  color: var(--text-colour);
+  font: var(--notes-font);
   margin: 0;
   padding: 0;
+}
+
+.checklist {
+  background: var(--paper-colour);
+  border-radius: var(--paper-radius);
+  width: var(--paper-width);
+}
+
+.checklist__box {
+  margin: var(--item-base-height);
+}
+
+.checklist__description {
+  margin: var(--item-base-height);
+}
+
+.checklist__item {
+  display: flex;
+}
+
+.checklist__item:first-child {
+  border-top: 1px solid var(--horizontal-rule-ink-colour);
+}
+
+.checklist__item:not(:last-child) {
+  border-bottom: 1px solid var(--horizontal-rule-ink-colour);
+}
+
+.checklist__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checklist__title {
+  font: var(--title-font);
+  text-align: center;
+  margin: 0.5rem auto;
+  padding: 0;
+}
+
+.container {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vertical-rule {
+  align-self: stretch;
+  background: var(--vertical-rule-ink-colour);
+  display: block;
+  margin: 0 1px;
+  width: 1px;
+}
+
+.vertical-rule::after {
+  background: inherit;
+  content: "";
+  display: block;
+  margin: 0 3px;
+  width: 1px;
+  height: 100%;
 }
