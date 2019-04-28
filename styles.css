@@ -83,3 +83,7 @@ body {
   width: 1px;
   height: 100%;
 }
+
+.completed {
+  text-decoration: line-through;
+}
