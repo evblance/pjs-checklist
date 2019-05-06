@@ -112,7 +112,7 @@ function handleChecklistChange(event) {
   if (selectType === SELECT_TYPE.MULTIPLE) {
     const targetIndex = Array.prototype.indexOf.call(this.parentNode.children, this);
     // We complete or uncomplete multiple items based on the current action on the target item
-    items[itemIndex].classList.contains('completed') ? completeMultiple(targetIndex) : uncompleteMultiple(targetIndex);
+    items[targetIndex].classList.contains('completed') ? completeMultiple(targetIndex) : unWcompleteMultiple(targetIndex);
   }
 }
 
