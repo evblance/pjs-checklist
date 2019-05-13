@@ -1,6 +1,9 @@
 const checklist = document.getElementById('checklist');
 const items = checklist.querySelectorAll('.checklist__item');
 
+// Classname representing the styling applied on checking an item in the list as complete
+const CHECKED_CLASSNAME = 'completed';
+
 // Enumerator for different user selection types
 const SELECT_TYPE = Object.freeze({
   SINGLE: 'SINGLE',
@@ -19,7 +22,7 @@ function completeMultiple(targetIndex) {
   const numItems = items.length;
   const completedIndices = [];
   for (let i = 0; i < numItems; i++) {
-    if (items[i].classList.contains('completed')) {
+    if (items[i].classList.contains(CHECKED_CLASSNAME)) {
       completedIndices.push(i);
     }
   }
@@ -34,12 +37,12 @@ function completeMultiple(targetIndex) {
     // We want all items in between our shift clicks to be toggled as completed and inputs checked
     if (targetIndex < min) {
       for (let i = targetIndex; i < min; i++) {
-        items[i].classList.add('completed');
+        items[i].classList.add(CHECKED_CLASSNAME);
         items[i].children[0].checked = true;
       }
     } else if (targetIndex > max) {
       for (let i = max; i <= targetIndex; i++) {
-        items[i].classList.add('completed');
+        items[i].classList.add(CHECKED_CLASSNAME);
         items[i].children[0].checked = true;
       }
     }
@@ -55,7 +58,7 @@ function uncompleteMultiple(targetIndex) {
   const numItems = items.length;
   const uncompletedIndices = [];
   for (let i = 0; i < numItems; i++) {
-    if (!items[i].classList.contains('completed')) {
+    if (!items[i].classList.contains(CHECKED_CLASSNAME)) {
       uncompletedIndices.push(i);
     }
   }
@@ -70,12 +73,12 @@ function uncompleteMultiple(targetIndex) {
     // We want all items in between our shift clicks to be toggled as incompleted and inputs unchecked
     if (targetIndex < min) {
       for (let i = targetIndex; i < min; i++) {
-        items[i].classList.remove('completed');
+        items[i].classList.remove(CHECKED_CLASSNAME);
         items[i].children[0].checked = false;
       }
     } else if (targetIndex > max) {
       for (let i = max; i <= targetIndex; i++) {
-        items[i].classList.remove('completed');
+        items[i].classList.remove(CHECKED_CLASSNAME);
         items[i].children[0].checked = false;
       }
     }
@@ -108,11 +111,11 @@ function handleKeyUp(event) {
  * @param {any} event The checklist change event.
  */
 function handleChecklistChange(event) {
-  this.classList.toggle('completed');
+  this.classList.toggle(CHECKED_CLASSNAME);
   if (selectType === SELECT_TYPE.MULTIPLE) {
     const targetIndex = Array.prototype.indexOf.call(this.parentNode.children, this);
     // We complete or uncomplete multiple items based on the current action on the target item
-    items[targetIndex].classList.contains('completed') ? completeMultiple(targetIndex) : uncompleteMultiple(targetIndex);
+    items[targetIndex].classList.contains(CHECKED_CLASSNAME) ? completeMultiple(targetIndex) : uncompleteMultiple(targetIndex);
   }
 }
 
